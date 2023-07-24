@@ -140,18 +140,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $html .= '<h3 style="margin-left:100px;">SERIE DE FIBONACCI</h3>';
                     $html .= "<p style='margin-left:100px;'>Los $numero números de FIBONACCI son " . implode(" ", $serieDeFibonacci) . "</p>";
-                } 
+                }
                 break;
 
             case '5':
                 //CUBO
-
-                $html .= '
-                <div>
-                    <form method="post">
-                        <button style="margin-left:100px;" type="submit">Calcular numeros que cumplen con la condicion:</button>
-                    </form>
-                </div>';
 
                 define('MAX', 1000000);
                 $html .= '<h3 style="margin-left:100px;">NÚMEROS QUE CUMPLEN CONDICIÓN DEL CUBO</h3>';
@@ -163,131 +156,184 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 break;
 
-                case '6':
-                    //FRACCIONARIOS
+            case '6':
+                //FRACCIONARIOS
+                $html .= '
+    <div>
+        <form method="post">
+
+            <p style="margin-left:100px;"><b>A:</b></p>
+            <label style="margin-left:100px;" for="numeradorA">Numerador A:</label>
+            <input type="number" name="numeradorA" id="numeradorA">
+            <label style="margin-left:100px;" for="denominadorA">Denominador A:</label>
+            <input type="number" name="denominadorA" id="denominadorA"><br><br>
+
+            <p style="margin-left:100px;"><b>B:</b></p>
+            <label style="margin-left:100px;" for="numeradorB">Numerador B:</label>
+            <input type="number" name="numeradorB" id="numeradorB">
+            <label style="margin-left:100px;" for="denominadorB">Denominador B:</label>
+            <input type="number" name="denominadorB" id="denominadorB"><br><br>
+
+            <p style="margin-left:100px;"><b>C:</b></p>
+            <label style="margin-left:100px;" for="numeradorC">Numerador C:</label>
+            <input type="number" name="numeradorC" id="numeradorC">
+            <label style="margin-left:100px;" for="denominadorC">Denominador C:</label>
+            <input type="number" name="denominadorC" id="denominadorC"><br><br>
+
+            <p style="margin-left:100px;"><b>D:</b></p>
+            <label style="margin-left:100px;" for="numeradorD">Numerador D:</label>
+            <input type="number" name="numeradorD" id="numeradorD">
+            <label style="margin-left:100px;" for="denominadorD">Denominador D:</label>
+            <input type="number" name="denominadorD" id="denominadorD">
+
+            <button style="margin-left:100px;" type="submit" name="calcularFraccionarios">Calcular Fraccionarios:</button>
+
+        </form>
+    </div>';
+
+                if (isset($_POST['calcularFraccionarios'])) {
+                    $numeradorA = $_POST['numeradorA'];
+                    $denominadorA = $_POST['denominadorA'];
+                    $numeradorB = $_POST['numeradorB'];
+                    $denominadorB = $_POST['denominadorB'];
+                    $numeradorC = $_POST['numeradorC'];
+                    $denominadorC = $_POST['denominadorC'];
+                    $numeradorD = $_POST['numeradorD'];
+                    $denominadorD = $_POST['denominadorD'];
+
+                    $resultado = SerieMatematica(
+                        $numeradorA,
+                        $denominadorA,
+                        $numeradorB,
+                        $denominadorB,
+                        $numeradorC,
+                        $denominadorC,
+                        $numeradorD,
+                        $denominadorD
+                    );
+
+                    $html .= '<h3 style="margin-left:100px;">EXPRESIÓN MATEMÁTICA</h3>';
+
+                    if (is_numeric($resultado)) {
+                        $html .= "<p style='margin-left:100px;'>El resultado de la expresión matemática es " . $resultado . "</p>";
+                    } else {
+                        $html .= "<p style='margin-left:100px;'>No se pudo calcular la expresión matemática.</p>";
+                    }
+
+                }
+                break;
+
+
+            case '7':
+                //TRIANGULO DE PASCAL
 
                 $html .= '
-                
-                <div>
-                <form method="post">
-    
-                <p style="margin-left:100px;"><b>A:</b></p>
-                <label style="margin-left:100px;" for="numeradorA">Numerador A:</label>
-                <input type="number" name="numeradorA" id="numeradorA">
-                <label style="margin-left:100px;" for="denominadorA">Denominador A:</label>
-                <input type="number" name="denominadorA" id="denominadorA"><br><br>
-    
-                <p style="margin-left:100px;"><b>B:</b></p>
-                <label style="margin-left:100px;" for="numeradorB">Numerador B:</label>
-                <input type="number" name="numeradorB" id="numeradorB">
-                <label style="margin-left:100px;" for="denominadorB">Denominador B:</label>
-                <input type="number" name="denominadorB" id="denominadorB"><br><br>
-                
-                <p style="margin-left:100px;"><b>C:</b></p>
-                <label style="margin-left:100px;" for="numeradorC">Numerador C:</label>
-                <input type="number" name="numeradorC" id="numeradorC">
-                <label style="margin-left:100px;" for="denominadorC">Denominador C:</label>
-                <input type="number" name="denominadorC" id="denominadorC"><br><br>
-                
-                <p style="margin-left:100px;"><b>D:</b></p>
-                <label style="margin-left:100px;" for="numeradorD">Numerador D:</label>
-                <input type="number" name="numeradorD" id="numeradorD">
-                <label style="margin-left:100px;" for="denominadorD">Denominador D:</label>
-                <input type="number" name="denominadorD" id="denominadorD">
-
-                <button style="margin-left:100px;" type="submit">Calcular Fraccionarios:</button>
-
-                </form>
-    
-            </div>';
-                    
-                $numeradorA = $_POST['numeradorA'];
-                $denominadorA = $_POST['denominadorA'];
-                $numeradorB = $_POST['numeradorB'];
-                $denominadorB = $_POST['denominadorB'];
-                $numeradorC = $_POST['numeradorC'];
-                $denominadorC = $_POST['denominadorC'];
-                $numeradorD = $_POST['numeradorD'];
-                $denominadorD = $_POST['denominadorD'];
-
-                $resultado = SerieMatematica(
-                    $numeradorA,
-                    $denominadorA,
-                    $numeradorB,
-                    $denominadorB,
-                    $numeradorC,
-                    $denominadorC,
-                    $numeradorD,
-                    $denominadorD
-                );
-
-                $html .= '<h3 style="margin-left:100px;">EXPRESIÓN MATEMÁTICA</h3>';
-
-                if (is_numeric($resultado)) {
-                    $html .= "<p style='margin-left:100px;'>El resultado de la expresión matemática es " . $resultado . "</p>";
-                } else {
-                    $html .= "<p style='margin-left:100px;'>No se pudo calcular la expresión matemática.</p>";
-                } 
-                break;   
-                
-                
-                case '7':
-                    //TRIANGULO DE PASCAL
-    
-                    $html .= '
                     <div>
                         <form method="post">
-            
-                            <label style="margin-left:130px;" for="numero">Ingresar el numero de filas del triangulo de Pascal</label>
+                            <label style="margin-left:100px;" for="numero">Ingresar el número de filas del Triángulo de Pascal</label>
                             <input type="number" name="numero" id="numero" required><br><br>
-                    
-                            <button style="margin-left:100px;" type="submit">Imprimir Triangulo:</button>
-                    
+                            <input type="hidden" name="opcion" value="7">
+                            <button style="margin-left:100px;" type="submit">Imprimir Triángulo:</button>
                         </form>
                     </div>';
 
-                    if (isset($_POST['numero'])) {
-                        $num = $_POST['numero'];
-                        $triangulo = '<div style="margin-left:100px;"><pre>' . pascal($num) . '</pre></div>';
-                        $html .= $triangulo;
-                    }
-    
-                    break;  
-                    
-                    
-                    case '8':
-                        //CEDULA (SIN ARREGLOS)
-        
-                        $html .= '
-                        <div>
-                            <form method="post">
-                
-                                <label style="margin-left:130px;" for="numero">Ingresar Cédula</label>
-                                <input type="text" name="numero" required><br><br>
-                        
-                                <button style="margin-left:100px;" type="submit">Verificar Cedula:</button>
-                        
-                            </form>
-                        </div>';
-        
-                        break;  
+                $html .= "<p style='margin-left:100px;'><b>TRINGULO DE PASCAL</b></p>";
 
-                        case '9':
-                            //CEDULA (MATRICES)
-            
-                            $html .= '
+                if (isset($_POST['numero'])) {
+                    $num = $_POST['numero'];
+                    $triangulo = '<div style="margin-left:100px;"><pre>' . pascal($num) . '</pre></div>';
+                    $html .= $triangulo;
+                }
+
+                break;
+
+
+            case '8':
+                //CEDULA (SIN ARREGLOS)
+
+                $html .= '
+                    <div>
+                        <form method="post">
+                            <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
+                            <input type="text" name="cedula" required><br><br>
+                            <input type="hidden" name="opcion" value="8">
+                            <button style="margin-left:100px;" type="submit">Verificar Cédula:</button>
+                        </form>
+                    </div>';
+
+                //VERIFICAR CÉDULA
+                if (isset($_POST['cedula'])) {
+                    $cedula = $_POST['cedula'];
+                    $resultadoCedula = ComprobarCedula($cedula);
+
+                    $html .= "
+                        <div>
+                            <br>
+                            <p style='margin-left:100px;'><b>VERIFICACION DE LA CEDULA</b></p>
+                            <p style='margin-left:100px;'>$resultadoCedula</p>
+                        </div>";
+                }
+
+                break;
+
+            case '9':
+                //CEDULA (MATRICES)
+
+                $html .= '
                             <div>
-                                <form method="post">
+                                <form action="./Verificar.php" method="post">
                     
-                                    <label style="margin-left:130px;" for="cedula">Ingresar Cédula</label>
-                                    <input type="text" name="cedula" id="cedula" required><br><br>
-                            
-                                    <button style="margin-left:130px;" type="submit" name="verificar">Verificar Cédula</button>
-                            
+                                    <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
+                                    <input type="text" name="cedula" class="input-number" maxlength="10" value="" required>
+                                    <input type="submit" name="accion" value="Verificar"><br><br>
+                                                        
                                 </form>
                             </div>';
-            
-                            break;  
+
+
+                //VERIFICAR CÉDULA
+                if (isset($_POST['cedula'])) {
+                    $html .= "<br>";
+                    $html .= "<h4 style='margin-left:100px;'>VERIFICACION DE CEDULA</h4>";
+                    $html .= "<p style='margin-left:100px;'>LA CEDULA: " . $cedula . $texto . "</p><br>";
+                }
+
+                break;
+
+            case '10':
+                //PAISES G5
+
+                if (isset($_POST['opcion'])) {
+                    //INDICES ASOCIATIVOS     
+                    $G8 = array(
+                        'EUROPA' => array("Alemania", "Francia", "Italia", "Reino Unido"),
+                        'ASIA' => array("Rusia", "Japón"),
+                        'AMERICA' => array("USA", "Canada"),
+                        'AFRICA' => null,
+                        'OCEANIA' => null
+                    );
+
+                    // IMPRIME LA ESTRUCTURA DE UN ARREGLO DE FORMA RECURSIVA
+                    $html .= "<pre style='margin-left:100px;'>";
+                    $html .= print_r($G8, true);
+                    $html .= "</pre>";
+
+                    $html .=  "<p style='margin-left:100px;'><br> <b> PAISES DEL G8:</b> </p>";
+
+                    foreach ($G8 as $indice => $continente) {
+                        $html .= "<p style='margin-left:100px;'> <br> CONTINENTE: " . $indice . "</p>";
+
+                        if (!isset($continente))
+                            $html .= "<p style='margin-left:100px;'>No existe paises que forman parte del G8 </p>";
+                        else
+                            foreach ($continente as $c) {
+                                $html .= "<p style='margin-left:100px;'> $c </p>";
+                            }
+                    }
+                }
+
+                break;
+
 
             case '11':
                 //SALIR
@@ -369,7 +415,8 @@ function formarFraccionNegativa($numerador, $denominador)
 
 
 //SERIE DE FIBONACCI
-function fibonacci($n) {
+function fibonacci($n)
+{
     $serieDeFibonacci = array();
 
     if ($n >= 1) {
@@ -392,7 +439,8 @@ function fibonacci($n) {
 }
 
 //CUBO DE LOS DÍGITOS IGUAL AL NÚMERO
-function cubos($num) {
+function cubos($num)
+{
     $digitos = str_split($num);
     $sumaCubos = 0;
     foreach ($digitos as $digito) {
@@ -521,19 +569,3 @@ function ComprobarCedula($cedula)
 
     return "La cédula es válida";
 }
-
-//VERIFICAR CÉDULA
-if (isset($_POST['verificar'])) {
-    $cedula = $_POST['cedula'];
-    $resultado = ComprobarCedula($cedula);
-
-    $html .= "
-    <div>
-        <p style='margin-left:130px;'>$resultado</p>
-    </div>";
-}
-
-?>
-
-
-
