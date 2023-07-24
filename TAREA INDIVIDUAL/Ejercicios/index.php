@@ -42,7 +42,7 @@ $html = '
     <form method="post">
         <label style="margin-left:100px;" for="opcion">Ingresar una opción (1-11):</label>
         <input type="text" name="opcion" id="opcion" required><br><br>
-        <button style="margin-left:100px;" type="submit">Calcular</button>
+        <button style="margin-left:100px;" type="submit">Enviar Opción</button>
     </form>
 </div>
 
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case '1':
                 //FACTORIAL
                 $html .= '
+                <br>
                 <div>
                     <form method="post">
                         <label style="margin-left:100px;" for="numero">Ingresar un número:</label>
@@ -82,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case '2':
                 //SERIE MATEMÁTICA
                 $html .= '
+                <br>
                 <div>
                     <form method="post">
                         <label style="margin-left:100px;" for="numero">Ingresar un número:</label>
@@ -104,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case '3':
                 //NÚMERO PRIMO
                 $html .= '
+                <br>
                     <div>
                         <form method="post">
                             <label style="margin-left:100px;" for="numero">Ingresar un número:</label>
@@ -125,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case '4':
                 //SERIE DE FIBONACCI
                 $html .= '
+                <br>
                         <div>
                             <form method="post">
                                 <label style="margin-left:100px;" for="numero">Ingresar un número:</label>
@@ -159,37 +163,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case '6':
                 //FRACCIONARIOS
                 $html .= '
-    <div>
-        <form method="post">
+                <br>
+                <div>
+                    <form method="post">
 
-            <p style="margin-left:100px;"><b>A:</b></p>
-            <label style="margin-left:100px;" for="numeradorA">Numerador A:</label>
-            <input type="number" name="numeradorA" id="numeradorA">
-            <label style="margin-left:100px;" for="denominadorA">Denominador A:</label>
-            <input type="number" name="denominadorA" id="denominadorA"><br><br>
+                        <p style="margin-left:100px;"><b>A:</b></p>
+                        <label style="margin-left:100px;" for="numeradorA">Numerador A:</label>
+                        <input type="number" name="numeradorA" id="numeradorA">
+                        <label style="margin-left:100px;" for="denominadorA">Denominador A:</label>
+                        <input type="number" name="denominadorA" id="denominadorA"><br><br>
 
-            <p style="margin-left:100px;"><b>B:</b></p>
-            <label style="margin-left:100px;" for="numeradorB">Numerador B:</label>
-            <input type="number" name="numeradorB" id="numeradorB">
-            <label style="margin-left:100px;" for="denominadorB">Denominador B:</label>
-            <input type="number" name="denominadorB" id="denominadorB"><br><br>
+                        <p style="margin-left:100px;"><b>B:</b></p>
+                        <label style="margin-left:100px;" for="numeradorB">Numerador B:</label>
+                        <input type="number" name="numeradorB" id="numeradorB">
+                        <label style="margin-left:100px;" for="denominadorB">Denominador B:</label>
+                        <input type="number" name="denominadorB" id="denominadorB"><br><br>
 
-            <p style="margin-left:100px;"><b>C:</b></p>
-            <label style="margin-left:100px;" for="numeradorC">Numerador C:</label>
-            <input type="number" name="numeradorC" id="numeradorC">
-            <label style="margin-left:100px;" for="denominadorC">Denominador C:</label>
-            <input type="number" name="denominadorC" id="denominadorC"><br><br>
+                        <p style="margin-left:100px;"><b>C:</b></p>
+                        <label style="margin-left:100px;" for="numeradorC">Numerador C:</label>
+                        <input type="number" name="numeradorC" id="numeradorC">
+                        <label style="margin-left:100px;" for="denominadorC">Denominador C:</label>
+                        <input type="number" name="denominadorC" id="denominadorC"><br><br>
 
-            <p style="margin-left:100px;"><b>D:</b></p>
-            <label style="margin-left:100px;" for="numeradorD">Numerador D:</label>
-            <input type="number" name="numeradorD" id="numeradorD">
-            <label style="margin-left:100px;" for="denominadorD">Denominador D:</label>
-            <input type="number" name="denominadorD" id="denominadorD">
+                        <p style="margin-left:100px;"><b>D:</b></p>
+                        <label style="margin-left:100px;" for="numeradorD">Numerador D:</label>
+                        <input type="number" name="numeradorD" id="numeradorD">
+                        <label style="margin-left:100px;" for="denominadorD">Denominador D:</label>
+                        <input type="number" name="denominadorD" id="denominadorD">
 
-            <button style="margin-left:100px;" type="submit" name="calcularFraccionarios">Calcular Fraccionarios:</button>
+                        <input type="hidden" name="opcion" value="6">
 
-        </form>
-    </div>';
+                        <button style="margin-left:100px;" type="submit" name="calcularFraccionarios">Calcular Fraccionarios:</button>
+
+                    </form>
+                </div>';
 
                 if (isset($_POST['calcularFraccionarios'])) {
                     $numeradorA = $_POST['numeradorA'];
@@ -212,14 +219,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $denominadorD
                     );
 
-                    $html .= '<h3 style="margin-left:100px;">EXPRESIÓN MATEMÁTICA</h3>';
+                    $html .= '<br><br><h3 style="margin-left:100px;">EXPRESIÓN MATEMÁTICA</h3>';
 
                     if (is_numeric($resultado)) {
                         $html .= "<p style='margin-left:100px;'>El resultado de la expresión matemática es " . $resultado . "</p>";
                     } else {
                         $html .= "<p style='margin-left:100px;'>No se pudo calcular la expresión matemática.</p>";
                     }
-
                 }
                 break;
 
@@ -228,14 +234,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 //TRIANGULO DE PASCAL
 
                 $html .= '
-                    <div>
-                        <form method="post">
-                            <label style="margin-left:100px;" for="numero">Ingresar el número de filas del Triángulo de Pascal</label>
-                            <input type="number" name="numero" id="numero" required><br><br>
-                            <input type="hidden" name="opcion" value="7">
-                            <button style="margin-left:100px;" type="submit">Imprimir Triángulo:</button>
-                        </form>
-                    </div>';
+                <br>
+                <div>
+                    <form method="post">
+                        <label style="margin-left:100px;" for="numero">Ingresar el número de filas del Triángulo de Pascal</label>
+                        <input type="number" name="numero" id="numero" required><br><br>
+                        <input type="hidden" name="opcion" value="7">
+                        <button style="margin-left:100px;" type="submit">Imprimir Triángulo:</button>
+                    </form>
+                </div>';
 
                 $html .= "<p style='margin-left:100px;'><b>TRINGULO DE PASCAL</b></p>";
 
@@ -252,14 +259,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 //CEDULA (SIN ARREGLOS)
 
                 $html .= '
-                    <div>
-                        <form method="post">
-                            <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
-                            <input type="text" name="cedula" required><br><br>
-                            <input type="hidden" name="opcion" value="8">
-                            <button style="margin-left:100px;" type="submit">Verificar Cédula:</button>
-                        </form>
-                    </div>';
+                <br>
+                <div>
+                    <form method="post">
+                        <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
+                        <input type="text" name="cedula" required><br><br>
+                        <input type="hidden" name="opcion" value="8">
+                        <button style="margin-left:100px;" type="submit">Verificar Cédula:</button>
+                    </form>
+                </div>';
 
                 //VERIFICAR CÉDULA
                 if (isset($_POST['cedula'])) {
@@ -267,11 +275,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $resultadoCedula = ComprobarCedula($cedula);
 
                     $html .= "
-                        <div>
-                            <br>
-                            <p style='margin-left:100px;'><b>VERIFICACION DE LA CEDULA</b></p>
-                            <p style='margin-left:100px;'>$resultadoCedula</p>
-                        </div>";
+                    <br>
+                    <div>
+                        <br>
+                        <p style='margin-left:100px;'><b>VERIFICACION DE LA CEDULA</b></p>
+                        <p style='margin-left:100px;'>$resultadoCedula</p>
+                    </div>";
                 }
 
                 break;
@@ -280,15 +289,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 //CEDULA (MATRICES)
 
                 $html .= '
-                            <div>
-                                <form action="./Verificar.php" method="post">
+                <br>
+                <div>
+                    <form action="./Verificar.php" method="post">
                     
-                                    <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
-                                    <input type="text" name="cedula" class="input-number" maxlength="10" value="" required>
-                                    <input type="submit" name="accion" value="Verificar"><br><br>
+                        <label style="margin-left:100px;" for="cedula">Ingresar Cédula</label>
+                        <input type="text" name="cedula" class="input-number" maxlength="10" value="" required>
+                        <input type="submit" name="accion" value="Verificar"><br><br>
                                                         
-                                </form>
-                            </div>';
+                    </form>
+                </div>';
 
 
                 //VERIFICAR CÉDULA
@@ -302,34 +312,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             case '10':
                 //PAISES G5
-
                 if (isset($_POST['opcion'])) {
-                    //INDICES ASOCIATIVOS     
-                    $G8 = array(
-                        'EUROPA' => array("Alemania", "Francia", "Italia", "Reino Unido"),
-                        'ASIA' => array("Rusia", "Japón"),
-                        'AMERICA' => array("USA", "Canada"),
-                        'AFRICA' => null,
-                        'OCEANIA' => null
-                    );
-
-                    // IMPRIME LA ESTRUCTURA DE UN ARREGLO DE FORMA RECURSIVA
-                    $html .= "<pre style='margin-left:100px;'>";
-                    $html .= print_r($G8, true);
-                    $html .= "</pre>";
-
-                    $html .=  "<p style='margin-left:100px;'><br> <b> PAISES DEL G8:</b> </p>";
-
-                    foreach ($G8 as $indice => $continente) {
-                        $html .= "<p style='margin-left:100px;'> <br> CONTINENTE: " . $indice . "</p>";
-
-                        if (!isset($continente))
-                            $html .= "<p style='margin-left:100px;'>No existe paises que forman parte del G8 </p>";
-                        else
-                            foreach ($continente as $c) {
-                                $html .= "<p style='margin-left:100px;'> $c </p>";
-                            }
-                    }
+                    header('Location: ./02_Paises.php');
+                    exit; 
                 }
 
                 break;
@@ -449,7 +434,7 @@ function cubos($num)
     return $sumaCubos == $num;
 }
 
-//SERIE MATEMÁTICA
+// SERIE MATEMÁTICA
 function SerieMatematica($numeradorA, $denominadorA, $numeradorB, $denominadorB, $numeradorC, $denominadorC, $numeradorD, $denominadorD)
 {
     // VERIFICAR QUE LOS NUMERADORES Y DENOMINADORES SEAN NÚMEROS ENTEROS
@@ -457,13 +442,13 @@ function SerieMatematica($numeradorA, $denominadorA, $numeradorB, $denominadorB,
         !filter_var($numeradorA, FILTER_VALIDATE_INT) ||
         !filter_var($denominadorA, FILTER_VALIDATE_INT) ||
         !filter_var($numeradorB, FILTER_VALIDATE_INT) ||
-        !filter_var($numeradorB, FILTER_VALIDATE_INT) ||
+        !filter_var($denominadorB, FILTER_VALIDATE_INT) ||
         !filter_var($denominadorC, FILTER_VALIDATE_INT) ||
         !filter_var($numeradorC, FILTER_VALIDATE_INT) ||
         !filter_var($numeradorD, FILTER_VALIDATE_INT) ||
         !filter_var($denominadorD, FILTER_VALIDATE_INT)
     ) {
-        return 'Los numeradores y denominadores no son números enteros.';
+        return 'Los numeradores y denominadores deben ser números enteros.';
     }
 
     // VERIFICAR QUE LOS DENOMINADORES SEAN DIFERENTES DE CERO
